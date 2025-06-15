@@ -24,5 +24,5 @@ yarn run build && cp .env.dev dist/ && yarn run start:prod
 | 게시글 제목 수정 | POST   | `/board/title/update`   |
 | 게시글 내용 수정 | POST   | `/board/content/update` |
 | 게시글 삭제    | POST   | `/board/delete`         |
-| 게시글 상세 조회 | GET    | `/board/:id`            |
+| 댓글 목록(게시글 상세 조회) | GET    | `/board/:id`   |
 | 댓글 생성     | POST   | `/board/comment/create` |
