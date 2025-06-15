@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: board
+      TZ: Asia/Seoul 
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_bin
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  node:
+    image: node:20
+    container_name: community-board
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    volumes:
+      - ./dist:/app
+      - ./package.json:/app/package.json
+      - ./yarn.lock:/app/yarn.lock
+      - ./.env.prod:/app/.env.prod
+    working_dir: /app
+    command: >
+      sh -c "yarn install --production && yarn run start:docker"
+
+volumes:
+  mysql-data:

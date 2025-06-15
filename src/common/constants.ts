@@ -1,0 +1,34 @@
+export const ERROR_CODES = {
+    SEARCH_VALUE_TOO_LONG: 10001,
+    PASSWORD_INVALID: 10101,
+    AUTHOR_INVALID: 10102,
+    TITLE_INVALID: 10103,
+    CONTENT_INVALID: 10104,
+    ID_NOT_FOUND: 10105,
+    PASSWORD_MISMATCH: 10106,
+    COMMENT_PASSWORD_INVALID: 10201,
+    COMMENT_AUTHOR_INVALID: 10202,
+    COMMENT_CONTENT_INVALID: 10203,
+    COMMENT_DELETED: 10204,
+    COMMENT_ID_NOT_FOUND: 10205,
+} as const;
+
+export const ERROR_MESSAGES = {
+    [ERROR_CODES.SEARCH_VALUE_TOO_LONG]: '검색어가 너무 길거나 비어있습니다.',
+    [ERROR_CODES.PASSWORD_INVALID]: '비밀번호는 4-20자 사이여야 합니다.',
+    [ERROR_CODES.AUTHOR_INVALID]: '작성자 정보가 올바르지 않습니다.',
+    [ERROR_CODES.TITLE_INVALID]: '제목이 올바르지 않습니다.',
+    [ERROR_CODES.CONTENT_INVALID]: '내용이 올바르지 않습니다.',
+    [ERROR_CODES.ID_NOT_FOUND]: '게시글을 찾을 수 없습니다.',
+    [ERROR_CODES.PASSWORD_MISMATCH]: '비밀번호가 일치하지 않습니다.',
+    [ERROR_CODES.COMMENT_PASSWORD_INVALID]: '비밀번호가 올바르지 않습니다.',
+    [ERROR_CODES.COMMENT_AUTHOR_INVALID]: '작성자 정보가 올바르지 않습니다.',
+    [ERROR_CODES.COMMENT_CONTENT_INVALID]: '내용이 올바르지 않습니다.',
+    [ERROR_CODES.COMMENT_DELETED]: '댓글이 삭제되었습니다.',
+    [ERROR_CODES.COMMENT_ID_NOT_FOUND]: '부모 댓글을 찾을 수 없습니다.',
+} as const;
+
+export const SEARCH_TYPE = {
+    AUTHOR: 1,
+    TITLE: 2,
+} as const;

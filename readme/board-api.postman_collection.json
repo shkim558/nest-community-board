@@ -1,0 +1,162 @@
+{
+    "info": {
+        "_postman_id": "your-collection-id",
+        "name": "Board API",
+        "description": "게시판 API 컬렉션",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "게시글 목록 조회",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/board/list",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["board", "list"]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"searchType\": \"TITLE\",\n    \"searchValue\": \"\",\n    \"page\": 1\n}"
+                },
+                "description": "게시글 목록을 조회합니다.\n- searchType: TITLE, CONTENT, AUTHOR\n- searchValue: 검색어 (최대 100자)\n- page: 페이지 번호"
+            }
+        },
+        {
+            "name": "게시글 생성",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/board/create",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["board", "create"]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"title\": \"게시글 제목\",\n    \"content\": \"게시글 내용\",\n    \"author\": \"작성자\",\n    \"password\": \"1234\"\n}"
+                },
+                "description": "새로운 게시글을 생성합니다.\n- title: 제목 (최대 200자)\n- content: 내용 (최대 4000자)\n- author: 작성자 (최대 50자)\n- password: 비밀번호 (4-20자)"
+            }
+        },
+        {
+            "name": "게시글 제목 수정",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/board/title/update",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["board", "title", "update"]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"id\": 1,\n    \"title\": \"수정된 제목\",\n    \"password\": \"1234\"\n}"
+                },
+                "description": "게시글의 제목을 수정합니다.\n- id: 게시글 ID\n- title: 수정할 제목 (최대 200자)\n- password: 게시글 비밀번호"
+            }
+        },
+        {
+            "name": "게시글 내용 수정",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/board/content/update",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["board", "content", "update"]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"id\": 1,\n    \"content\": \"수정된 내용\",\n    \"password\": \"1234\"\n}"
+                },
+                "description": "게시글의 내용을 수정합니다.\n- id: 게시글 ID\n- content: 수정할 내용 (최대 4000자)\n- password: 게시글 비밀번호"
+            }
+        },
+        {
+            "name": "게시글 삭제",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/board/delete",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["board", "delete"]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"id\": 1,\n    \"password\": \"1234\"\n}"
+                },
+                "description": "게시글을 삭제합니다.\n- id: 게시글 ID\n- password: 게시글 비밀번호"
+            }
+        },
+        {
+            "name": "게시글 상세 조회",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/board/1",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["board", "1"]
+                },
+                "description": "게시글의 상세 정보를 조회합니다.\n- id: 게시글 ID (URL 파라미터)"
+            }
+        },
+        {
+            "name": "댓글 생성",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/board/comment/create",
+                    "host": ["{{baseUrl}}"],
+                    "path": ["board", "comment", "create"]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"boardId\": 1,\n    \"parentCommentId\": null,\n    \"author\": \"댓글 작성자\",\n    \"password\": \"1234\",\n    \"content\": \"댓글 내용\"\n}"
+                },
+                "description": "게시글에 댓글을 작성합니다.\n- boardId: 게시글 ID\n- parentCommentId: 부모 댓글 ID (대댓글인 경우)\n- author: 작성자 (최대 50자)\n- password: 비밀번호 (최대 20자)\n- content: 내용 (최대 1000자)"
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:3000",
+            "type": "string"
+        }
+    ]
+}
