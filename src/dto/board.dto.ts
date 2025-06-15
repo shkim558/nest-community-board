@@ -1,13 +1,11 @@
 import { SEARCH_TYPE } from '../common/constants';
 
-// GET
 export interface BoardListRequest {
     searchType: (typeof SEARCH_TYPE)[keyof typeof SEARCH_TYPE];
     searchValue: string;
     page?: number;
 }
 
-// POST
 export interface BoardCreateRequest {
     author: string;
     title: string;
